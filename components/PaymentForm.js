@@ -1,12 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useLayoutEffect } from "react";
 import { View, Text, SafeAreaView, Keyboard } from "react-native";
 import { TextInput, Button, Card, Title, Divider } from "react-native-paper";
 import { useNavigation } from "@react-navigation/core";
 import { SalesContext } from "../context/SalesContext";
 
 const PaymentForm = () => {
-  const { addPayment } = useContext(SalesContext);
   const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "Payment",
+      headerStyle: { backgroundColor: "teal" },
+      headerBackTitleStyle: { color: "#000" },
+    });
+  }, []);
+  const { addPayment } = useContext(SalesContext);
   const [reference, setReference] = useState("");
   const [amount, setAmount] = useState(0);
 
@@ -24,8 +32,6 @@ const PaymentForm = () => {
       setReference("");
       setAmount("");
       Keyboard.dismiss();
-
-      navigation.goBack();
     }
   };
 
@@ -33,29 +39,30 @@ const PaymentForm = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
         alignItems: "center",
-        // backgroundColor: "#fff",
       }}
     >
       <Card
         style={{
           marginTop: 10,
           borderRadius: 15,
-          padding: 25,
+          padding: 10,
           width: 400,
           shadowOpacity: 0.5,
           shadowRadius: 5,
+          backgroundColor: "darkcyan",
         }}
       >
-        <Title style={{ fontSize: 25, fontWeight: "bold" }}>
+        <Title
+          style={{ fontSize: 25, fontWeight: "bold", alignSelf: "center" }}
+        >
           Submit Your Sales Here
         </Title>
-        <Divider />
         <Text style={{ fontSize: 20, marginTop: 10 }}>Reference </Text>
         <TextInput
           placeholder="Was Submitted By..."
           value={reference}
+          mode="outlined"
           onChangeText={(text) => setReference(text)}
         />
         <Text style={{ fontSize: 20, marginTop: 10 }}>Amount </Text>
@@ -63,6 +70,7 @@ const PaymentForm = () => {
           placeholder="Amount"
           value={amount}
           onChangeText={(text) => setAmount(text)}
+          mode="outlined"
           keyboardType="numeric"
           onSubmitEditing={HandleSubmit}
         />
@@ -74,9 +82,11 @@ const PaymentForm = () => {
           }}
         >
           <Button
-            mode="contained"
+            mode="outlined"
             style={{ width: 250, borderRadius: 15, padding: 4 }}
             onPress={HandleSubmit}
+            color="#000"
+            labelStyle={{ fontSize: 20 }}
           >
             Submit
           </Button>

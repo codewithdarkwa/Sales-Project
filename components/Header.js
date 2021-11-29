@@ -49,16 +49,15 @@ export const TotalSales = () => {
             marginBottom: 5,
           }}
         >
-          <View style={{ marginTop: 10, marginRight: 15 }}>
-            <Image
-              source={require("../assets/image/cedi.png")}
-              style={{
-                width: 25,
-                height: 25,
-                borderRadius: 25 / 2,
-              }}
-            />
-          </View>
+          <Image
+            source={require("../assets/image/cedi.png")}
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 25 / 2,
+            }}
+          />
+
           {numberWithCommas(total)}
         </Text>
       </View>
