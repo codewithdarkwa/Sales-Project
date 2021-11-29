@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { Appbar, Card } from "react-native-paper";
 import { Image, Text, View } from "react-native";
-import { SalesContext } from "../hooks/SalesContext";
+import { SalesContext } from "../context/SalesContext";
+
+import { numberWithCommas } from "../utils/format";
 
 export const Header = () => {
   return (
@@ -47,15 +49,17 @@ export const TotalSales = () => {
             marginBottom: 5,
           }}
         >
-          <Image
-            source={require("../assets/image/cedi.png")}
-            style={{
-              width: 35,
-              height: 35,
-              borderRadius: 35 / 2,
-            }}
-          />
-          {total}
+          <View style={{ marginTop: 10, marginRight: 15 }}>
+            <Image
+              source={require("../assets/image/cedi.png")}
+              style={{
+                width: 25,
+                height: 25,
+                borderRadius: 25 / 2,
+              }}
+            />
+          </View>
+          {numberWithCommas(total)}
         </Text>
       </View>
     </Card>

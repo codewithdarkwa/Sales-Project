@@ -1,25 +1,21 @@
-import React, { useContext } from "react";
-import { DataTable } from "react-native-paper";
-import History from "./History";
-import { SalesContext } from "../hooks/SalesContext";
+import React, { useContext, useState } from "react";
+import { DataTable, Card } from "react-native-paper";
+import { SalesContext } from "../context/SalesContext";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
+import { MaterialIcons } from "react-native-vector-icons";
+import { numberWithCommas } from "../utils/format";
 
 const HistoryDetails = () => {
-  const { payments } = useContext(SalesContext);
+  const { payments, deletePaymentHistory } = useContext(SalesContext);
 
-  const HandleDelete = () => {};
-
-  const rightSwipe = (progress, dragX) => {
-    // const scale = dragX.interpolate({
-    //   inputRange: [0, 100],
-    //   ouputRange: [0, 1],
-    //   extrapolate: "clamp",
-    // });
+  //Handling the delete method
+  const rightSwipe = () => {
+    const HandleDelete = () => {};
     return (
       <TouchableOpacity onPress={HandleDelete}>
         <View style={styles.delete}>
-          <Text>delete</Text>
+          <MaterialIcons name="delete" size={24} color="#eee" />
         </View>
       </TouchableOpacity>
     );
@@ -39,7 +35,7 @@ const HistoryDetails = () => {
             <DataTable.Row>
               <DataTable.Cell>{payment.reference}</DataTable.Cell>
               <DataTable.Cell style={{ left: 150 }}>
-                {payment.amount}
+                {numberWithCommas(payment.amount)}
               </DataTable.Cell>
             </DataTable.Row>
           </Swipeable>
@@ -50,6 +46,21 @@ const HistoryDetails = () => {
 };
 
 export default HistoryDetails;
+
+export const History = () => {
+  return (
+    <Card
+      style={{
+        marginTop: 10,
+        borderRadius: 5,
+        padding: 10,
+        backgroundColor: "#eee",
+      }}
+    >
+      <Text style={{ fontSize: 25, fontWeight: "bold" }}>History</Text>
+    </Card>
+  );
+};
 
 const styles = StyleSheet.create({
   delete: {

@@ -5,6 +5,13 @@ export default (state, action) => {
         ...state,
         payments: [action.payload, ...state.payments],
       };
+    case "DELETE_PAYMENT_HISTORY":
+      return {
+        ...state,
+        payments: state.payments.filter(
+          (payment) => payment.id !== action.payload
+        ),
+      };
     default:
       return state;
   }

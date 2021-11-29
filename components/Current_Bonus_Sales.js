@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { View } from "react-native";
 import { Card, Paragraph } from "react-native-paper";
-import { SalesContext } from "../hooks/SalesContext";
+import { SalesContext } from "../context/SalesContext";
+
+import { numberWithCommas } from "../utils/format";
 
 const Current_Bonus_Sales = () => {
   const { payments } = useContext(SalesContext);
@@ -40,7 +42,7 @@ const Current_Bonus_Sales = () => {
         >
           <Card.Title title="Highest Sales" />
           <Card.Content>
-            <Paragraph>Amount : GHS {maxValue}</Paragraph>
+            <Paragraph>Amount : GHS {numberWithCommas(maxValue)}</Paragraph>
           </Card.Content>
         </Card>
         <Card
@@ -55,7 +57,7 @@ const Current_Bonus_Sales = () => {
         >
           <Card.Title title="Bonus" />
           <Card.Content>
-            <Paragraph>Amount : GHS {bonus}</Paragraph>
+            <Paragraph>Amount : GHS {numberWithCommas(bonus)}</Paragraph>
           </Card.Content>
         </Card>
       </View>

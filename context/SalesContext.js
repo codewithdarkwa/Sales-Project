@@ -17,9 +17,17 @@ export const SalesProvider = ({ children }) => {
       payload: payment,
     });
   };
+  const deletePaymentHistory = (id) => {
+    dispatch({
+      type: "DELETE_PAYMENT_HISTORY",
+      payload: id,
+    });
+  };
 
   return (
-    <SalesContext.Provider value={{ payments: state.payments, addPayment }}>
+    <SalesContext.Provider
+      value={{ payments: state.payments, addPayment, deletePaymentHistory }}
+    >
       {children}
     </SalesContext.Provider>
   );

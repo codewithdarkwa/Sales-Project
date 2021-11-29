@@ -9,18 +9,13 @@ import HistoryDetails from "../components/HistoryDetails";
 
 const Dashboard = () => {
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
-    >
-      <ScrollView>
-        <Header />
-        <TotalSales />
-        <CurrentBonusSales />
-        <PaymentButton />
-        <HistoryDetails />
-      </ScrollView>
-    </KeyboardAvoidingView>
+    <ScrollView>
+      <Header />
+      <TotalSales />
+      <CurrentBonusSales />
+      <PaymentButton />
+      <HistoryDetails />
+    </ScrollView>
   );
 };
 

@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import { View, Text, SafeAreaView, Keyboard } from "react-native";
 import { TextInput, Button, Card, Title, Divider } from "react-native-paper";
-
-import { SalesContext } from "../hooks/SalesContext";
+import { useNavigation } from "@react-navigation/core";
+import { SalesContext } from "../context/SalesContext";
 
 const PaymentForm = () => {
   const { addPayment } = useContext(SalesContext);
-
+  const navigation = useNavigation();
   const [reference, setReference] = useState("");
   const [amount, setAmount] = useState(0);
 
@@ -24,12 +24,30 @@ const PaymentForm = () => {
       setReference("");
       setAmount("");
       Keyboard.dismiss();
+
+      navigation.goBack();
     }
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Card style={{ marginTop: 25, borderRadius: 15, padding: 25 }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        // backgroundColor: "#fff",
+      }}
+    >
+      <Card
+        style={{
+          marginTop: 10,
+          borderRadius: 15,
+          padding: 25,
+          width: 400,
+          shadowOpacity: 0.5,
+          shadowRadius: 5,
+        }}
+      >
         <Title style={{ fontSize: 25, fontWeight: "bold" }}>
           Submit Your Sales Here
         </Title>
@@ -57,7 +75,7 @@ const PaymentForm = () => {
         >
           <Button
             mode="contained"
-            style={{ width: 300, borderRadius: 15, padding: 4 }}
+            style={{ width: 250, borderRadius: 15, padding: 4 }}
             onPress={HandleSubmit}
           >
             Submit

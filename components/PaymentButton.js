@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/core";
 
 const PaymentButton = () => {
   const navigation = useNavigation();
+
   return (
     <View>
       <Button
