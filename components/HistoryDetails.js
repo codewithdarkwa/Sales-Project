@@ -1,24 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { DataTable, Card } from "react-native-paper";
 import { SalesContext } from "../context/SalesContext";
-import Swipeable from "react-native-gesture-handler/Swipeable";
-import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { MaterialIcons } from "react-native-vector-icons";
 import { numberWithCommas } from "../utils/format";
 
 const HistoryDetails = () => {
   const { payments, deletePaymentHistory } = useContext(SalesContext);
 
-  //Handling the delete method
-  const rightSwipe = () => {
-    const HandleDelete = () => {};
-    return (
-      <TouchableOpacity onPress={HandleDelete}>
-        <View style={styles.delete}>
-          <MaterialIcons name="delete" size={24} color="#eee" />
-        </View>
-      </TouchableOpacity>
-    );
+  const HandleDelete = (id) => {
+    deletePaymentHistory(id);
   };
 
   return (
@@ -31,14 +22,28 @@ const HistoryDetails = () => {
         </DataTable.Header>
 
         {payments.map((payment) => (
-          <Swipeable renderRightActions={rightSwipe} key={payment.id}>
+          <View key={payment.id}>
             <DataTable.Row>
               <DataTable.Cell>{payment.reference}</DataTable.Cell>
-              <DataTable.Cell style={{ left: 150 }}>
-                {numberWithCommas(payment.amount)}
-              </DataTable.Cell>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                }}
+              >
+                <DataTable.Cell style={{}}>
+                  {numberWithCommas(payment.amount)}
+                </DataTable.Cell>
+                <MaterialIcons
+                  name="delete"
+                  size={24}
+                  color="red"
+                  onPress={() => HandleDelete(payment.id)}
+                />
+              </View>
             </DataTable.Row>
-          </Swipeable>
+          </View>
         ))}
       </DataTable>
     </>
