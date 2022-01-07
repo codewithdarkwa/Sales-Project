@@ -46,7 +46,7 @@ const PaymentForm = () => {
         style={{
           marginTop: 10,
           borderRadius: 15,
-          padding: 10,
+          padding: 5,
           width: 400,
           shadowOpacity: 0.5,
           shadowRadius: 5,

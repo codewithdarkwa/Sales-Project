@@ -28,11 +28,11 @@ const HistoryDetails = () => {
               <View
                 style={{
                   flexDirection: "row",
-                  justifyContent: "space-around",
-                  alignItems: "center",
+                  padding: 10,
+                  width: "25%",
                 }}
               >
-                <DataTable.Cell style={{}}>
+                <DataTable.Cell>
                   {numberWithCommas(payment.amount)}
                 </DataTable.Cell>
                 <MaterialIcons
