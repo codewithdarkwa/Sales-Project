@@ -8,10 +8,11 @@ import { numberWithCommas } from "../utils/format";
 const Current_Bonus_Sales = () => {
   const { payments } = useContext(SalesContext);
 
-  const amount = payments.map((payment) => payment.amount);
+  const amount = payments.map((payment) => payment.price);
   const maxValue = amount
     .reduce((acc, val) => (acc > val ? acc : val), 0)
     .toFixed(2);
+
   const bonus = amount.reduce((acc, val) => acc + val * 0.005, 0).toFixed(2);
 
   return (

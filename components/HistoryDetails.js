@@ -1,17 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { DataTable, Card } from "react-native-paper";
 import { SalesContext } from "../context/SalesContext";
 import { StyleSheet, View, Text } from "react-native";
-import { MaterialIcons } from "react-native-vector-icons";
+import { MaterialIcons, FontAwesome5 } from "react-native-vector-icons";
 import { numberWithCommas } from "../utils/format";
+import { useNavigation } from "@react-navigation/core";
 
 const HistoryDetails = () => {
-  const { payments, deletePaymentHistory } = useContext(SalesContext);
+  const { payments, deletePaymentHistory, getPayments } =
+    useContext(SalesContext);
+  const navigation = useNavigation();
 
   const HandleDelete = (id) => {
     deletePaymentHistory(id);
   };
 
+  useEffect(() => {
+    getPayments();
+  }, []);
   return (
     <>
       <History />
@@ -22,9 +28,9 @@ const HistoryDetails = () => {
         </DataTable.Header>
 
         {payments.map((payment) => (
-          <View key={payment.id}>
+          <View key={payment._id}>
             <DataTable.Row>
-              <DataTable.Cell>{payment.reference}</DataTable.Cell>
+              <DataTable.Cell>{payment.name}</DataTable.Cell>
               <View
                 style={{
                   flexDirection: "row",
@@ -33,13 +39,19 @@ const HistoryDetails = () => {
                 }}
               >
                 <DataTable.Cell>
-                  {numberWithCommas(payment.amount)}
+                  {numberWithCommas(payment.price)}
                 </DataTable.Cell>
+                <FontAwesome5
+                  name="edit"
+                  size={24}
+                  color="blue"
+                  onPress={() => navigation.navigate("UpdatePayment")}
+                />
                 <MaterialIcons
                   name="delete"
                   size={24}
                   color="red"
-                  onPress={() => HandleDelete(payment.id)}
+                  onPress={() => HandleDelete(payment._id)}
                 />
               </View>
             </DataTable.Row>

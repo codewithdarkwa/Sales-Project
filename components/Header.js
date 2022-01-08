@@ -16,8 +16,7 @@ export const Header = () => {
 
 export const TotalSales = () => {
   const { payments } = useContext(SalesContext);
-
-  const amount = payments.map((payment) => payment.amount);
+  const amount = payments.map((payment) => payment.price);
   const total = amount.reduce((acc, val) => acc + val, 0).toFixed(2);
   return (
     <Card
