@@ -4,7 +4,8 @@ import { TextInput, Button, Card, Title } from "react-native-paper";
 import { useNavigation } from "@react-navigation/core";
 import { SalesContext } from "../context/SalesContext";
 
-const PaymentUpdate = () => {
+const PaymentUpdate = ({ route: { params } }) => {
+  console.log(params);
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -14,24 +15,24 @@ const PaymentUpdate = () => {
       headerBackTitleStyle: { color: "#000" },
     });
   }, []);
-  const { updatePayment, payments } = useContext(SalesContext);
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
+  const { updatePayment } = useContext(SalesContext);
+  const [name, setName] = useState(params.name);
+  const [price, setPrice] = useState(params.price);
 
-  const id = payments.map((payment) => payment._id);
   const HandleUpdate = (e) => {
     e.preventDefault();
     if (!name || !price) {
       alert("Required filled is missing");
     }
-    const newPayment = {
+    const editPayment = {
       name,
       price: +price,
     };
-    updatePayment(id, newPayment);
+    updatePayment(params.id, editPayment);
     setName("");
     setPrice("");
     Keyboard.dismiss();
+    navigation.navigate("Dashboard");
   };
 
   return (

@@ -20,25 +20,25 @@ const Current_Bonus_Sales = () => {
       style={{
         borderTopRightRadius: 35,
         backgroundColor: "floralwhite",
-        padding: 35,
-        marginTop: 10,
+        padding: 5,
       }}
     >
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-around",
-          marginTop: 20,
+          marginTop: 10,
         }}
       >
         <Card
           style={{
             backgroundColor: "teal",
-            width: 200,
             shadowOpacity: 1,
             shadowRadius: 3,
             borderBottomLeftRadius: 30,
             marginRight: 30,
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <Card.Title title="Highest Sales" />
@@ -49,11 +49,11 @@ const Current_Bonus_Sales = () => {
         <Card
           style={{
             backgroundColor: "wheat",
-            width: 200,
             borderBottomRightRadius: 30,
             shadowOpacity: 1,
             shadowRadius: 3,
-            marginLeft: 30,
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <Card.Title title="Bonus" />

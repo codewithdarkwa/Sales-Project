@@ -13,7 +13,9 @@ export const SalesProvider = ({ children }) => {
 
   const getPayments = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/getSales");
+      const res = await axios.get(
+        "https://sale-submission.herokuapp.com/getSales"
+      );
       dispatch({
         type: "GET_PAYMENTS",
         payload: res.data.sale,
@@ -31,7 +33,7 @@ export const SalesProvider = ({ children }) => {
     };
     try {
       const res = await axios.post(
-        "http://localhost:5000/addSale",
+        "https://sale-submission.herokuapp.com/addSale",
         payment,
         config
       );
@@ -43,11 +45,12 @@ export const SalesProvider = ({ children }) => {
       console.log(error);
     }
   };
-  const updatePayment = async (paymentUpadte) => {
+  const updatePayment = async (id, paymentUpdate) => {
     try {
-      const res = await axios.put(`http://localhost:5000/editSale/`, {
-        paymentUpadte,
-      });
+      const res = await axios.put(
+        `https://sale-submission.herokuapp.com/editSale/${id}`,
+        paymentUpdate
+      );
       dispatch({
         type: "UPDATE_PAYMENT",
         payload: res.data.sale,
@@ -58,7 +61,7 @@ export const SalesProvider = ({ children }) => {
   };
   const deletePaymentHistory = async (id) => {
     try {
-      axios.delete(`http://localhost:5000/deleteSale/${id}`);
+      axios.delete(`https://sale-submission.herokuapp.com/deleteSale/${id}`);
 
       dispatch({
         type: "DELETE_PAYMENT_HISTORY",

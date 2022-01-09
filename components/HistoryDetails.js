@@ -35,7 +35,9 @@ const HistoryDetails = () => {
                 style={{
                   flexDirection: "row",
                   padding: 10,
-                  width: "25%",
+                  width: "30%",
+                  alignItems: "center",
+                  justifyContent: "space-between",
                 }}
               >
                 <DataTable.Cell>
@@ -43,13 +45,19 @@ const HistoryDetails = () => {
                 </DataTable.Cell>
                 <FontAwesome5
                   name="edit"
-                  size={24}
+                  size={17}
                   color="blue"
-                  onPress={() => navigation.navigate("UpdatePayment")}
+                  onPress={() =>
+                    navigation.navigate("UpdatePayment", {
+                      id: payment._id,
+                      name: payment.name,
+                      price: payment.price,
+                    })
+                  }
                 />
                 <MaterialIcons
                   name="delete"
-                  size={24}
+                  size={22}
                   color="red"
                   onPress={() => HandleDelete(payment._id)}
                 />

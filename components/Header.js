@@ -23,17 +23,16 @@ export const TotalSales = () => {
       style={{
         borderBottomLeftRadius: 35,
         borderBottomRightRadius: 10,
-        padding: 10,
+        padding: 5,
         backgroundColor: "teal",
       }}
     >
       <View
         style={{
-          width: 170,
-          height: 170,
-          borderRadius: 170 / 2,
+          width: 150,
+          height: 150,
+          borderRadius: 150 / 2,
           backgroundColor: "#fff",
-          marginTop: 10,
           shadowOpacity: 2,
           shadowRadius: 10,
           left: 120,
